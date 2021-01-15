@@ -26,16 +26,14 @@ export default function Join() {
     <div className={styles.outerContainer}>
       <div className={styles.innerContainer}>
         <h1 className={styles.header}>Join a room</h1>
-        <div><input 
+        <input 
           className={styles.nameInput}
           placeholder="Name" 
           onChange={handleNameChange}/>
-        </div>
-        <div><input 
+        <input 
           className={styles.roomInput}
           placeholder="Room" 
           onChange={handleRoomChange}/>
-        </div>
         <Link 
           to={`/chat?name=${name}&room=${room}`}
           onClick={handleLinkClick}>

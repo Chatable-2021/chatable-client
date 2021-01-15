@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: space-around;
   height: 40vh;
+  width: 100vw;
 }
 
 .nameInput {
@@ -27,6 +28,7 @@
   padding: 5%;  
   font-size: 1.2em;
   outline: none;
+  margin: 10px;
 }
 
 .roomInput {
@@ -35,6 +37,7 @@
   padding: 5%;   
   font-size: 1.2em;
   outline: none;
+  margin: 10px;
 }
 
 .submitButton {
@@ -46,9 +49,10 @@
   border-radius: 5px;    
   display: inline-block;    
   border: none;    
-  width: 100%;
+  width: 80%;
   cursor: pointer;
   outline: none;
+  margin: 10px;
 }
 
 .submitButton:active {
