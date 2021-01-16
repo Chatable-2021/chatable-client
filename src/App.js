@@ -8,7 +8,7 @@ import styles from './App.css';
 const App = () => (
   <div className={styles.root}>
     <Router>
-      <Route path="/" exact component={Join} />
+      <Route path="/join" exact component={Join} />
       <Route path='/chat' exact component={Chat} />
       <Route path='/signup' exact component={Signup} />
     </Router>
