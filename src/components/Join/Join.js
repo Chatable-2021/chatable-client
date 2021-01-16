@@ -29,18 +29,18 @@ export default function Join() {
       <h1 className={styles.heading}>Join a room</h1>
       <input
         className={styles['form-input']}
-        placeholder='Name'
+        placeholder="Name"
         onChange={handleNameChange}
       />
       <input
         className={styles['form-input']}
-        placeholder='Room'
+        placeholder="Room"
         onChange={handleRoomChange}
       />
       <button
         className={styles.submitButton}
         onClick={handleLinkClick}
-        type='submit'
+        type="submit"
       >
         Sign In
       </button>
