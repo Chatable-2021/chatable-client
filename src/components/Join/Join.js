@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styles from './Join.css';
 
-export default function Join() {
+export default function Join({ socket }) {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+
+  if(socket) { 
+    socket.on('AUTH_RESULTS', (data) => console.log('data', data));    
+  }
 
   const history = useHistory();
 
