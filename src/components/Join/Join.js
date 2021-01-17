@@ -25,6 +25,7 @@ export default function Join({ socket }) {
       e.preventDefault();
     } else {
       history.push(`/chat?name=${name}&room=${room}`);
+      return null;
     }
   };
 
