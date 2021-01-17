@@ -8,7 +8,7 @@ function Join({ socket }) {
   const [room, setRoom] = useState('');
 
   if(socket) { 
-    socket.on('LOGIN_RESULTS', (data) => console.log('data', data));    
+    socket.on('LOGIN_RESULTS', (data) => console.log('data', data));
   }
 
   const history = useHistory();
