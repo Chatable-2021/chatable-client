@@ -12,7 +12,7 @@ function RoomContainer(
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    if (socket) {
+    if(socket) {
       socket.emit('GET_ROOMS', user?.id);
       socket.on('ROOMS_RESULTS', (data) => {
         //array of rooms []
@@ -44,6 +44,8 @@ RoomContainer.propTypes = {
   user: PropTypes.object,
   socket: PropTypes.shape({
     emit: PropTypes.func.isRequired,
+    on: PropTypes.func.isRequired,
+    off: PropTypes.func.isRequired
   }),
   handleLogout: PropTypes.func.isRequired
 };
