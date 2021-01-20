@@ -3,8 +3,10 @@ import RoomForm from '../Roomform/RoomForm';
 import RoomList from '../RoomList/RoomList';
 import styles from './RoomContainer.css';
 import Header from '../Header/Header';
+import PropTypes from 'prop-types';
 
-export default function RoomContainer(
+
+function RoomContainer(
   { user, socket, handleLogout }
 ) {
   const [rooms, setRooms] = useState([]);
@@ -37,3 +39,13 @@ export default function RoomContainer(
     </>
   );
 }
+
+RoomContainer.propTypes = {
+  user: PropTypes.object,
+  socket: PropTypes.shape({
+    emit: PropTypes.func.isRequired,
+  }),
+  handleLogout: PropTypes.func.isRequired
+};
+
+export default RoomContainer;
