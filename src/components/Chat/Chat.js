@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import ChatList from '../ChatList/ChatList';
 import styles from './Chat.css';
 import ChatForm from '../ChatForm/ChatForm';
-import PropTypes from 'prop-types';
 
 function Chat({ socket, user }) {
   const [messages, setMessages] = useState([]);
