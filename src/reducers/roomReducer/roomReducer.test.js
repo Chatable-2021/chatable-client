@@ -9,8 +9,44 @@ describe('room reducer', () => {
 
     const action = setRooms([]);
 
-    const results = reducer(state, action);
+    const result = reducer(state, action);
 
-    expect(results).toEqual(state);
+    expect(result).toEqual(state);
+  });
+
+  it('should handle SET_ROOMS case', () => {
+    const state = {
+      rooms: [],
+    };
+
+    const action = setRooms([
+      {
+        id: 1,
+        name: 'test room',
+        userId: 2,
+      },
+      {
+        id: 2,
+        name: 'different room',
+        userId: 3,
+      },
+    ]);
+
+    const result = reducer(state, action);
+
+    expect(result).toEqual({
+      rooms: [
+        {
+          id: 1,
+          name: 'test room',
+          userId: 2,
+        },
+        {
+          id: 2,
+          name: 'different room',
+          userId: 3,
+        },
+      ],
+    });
   });
 });
