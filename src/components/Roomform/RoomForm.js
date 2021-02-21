@@ -19,7 +19,6 @@ function RoomForm({ user, socket }) {
   }, [userId]);
 
   const handleRoomForm = formValues => {
-    console.log(formValues, 'roomForm');
     socket.emit('CREATE_CHATROOM', formValues);
     reset();
   };

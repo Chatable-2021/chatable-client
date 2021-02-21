@@ -17,7 +17,8 @@ const useStyles = makeStyles({
     overflowX: 'hidden',
     display: 'flex',
     flexDirection: 'column-reverse',
-}});
+  },
+});
 
 const RoomList = ({ rooms, socket }) => {
   const roomsBeginningRef = useRef(null);
@@ -32,15 +33,11 @@ const RoomList = ({ rooms, socket }) => {
   }, [rooms]);
 
   return (
-    <List component="ul" className={classes.list}>
+    <List component='ul' className={classes.list}>
       {rooms
-        ? rooms.map((room) => (
-          <RoomListItem
-            socket={socket}
-            key={room.id}
-            room={room}
-          />
-        ))
+        ? rooms.map(room => (
+            <RoomListItem socket={socket} key={room.id} room={room} />
+          ))
         : null}
       <div ref={roomsBeginningRef} />
     </List>
@@ -50,8 +47,8 @@ const RoomList = ({ rooms, socket }) => {
 RoomList.propTypes = {
   rooms: PropTypes.array,
   socket: PropTypes.shape({
-    emit: PropTypes.func
-  })
+    emit: PropTypes.func,
+  }),
 };
 
 export default RoomList;
