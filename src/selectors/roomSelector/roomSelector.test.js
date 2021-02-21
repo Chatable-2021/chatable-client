@@ -1,6 +1,6 @@
 import { getRooms } from './roomSelector';
 
-describe('room selector test', () => {
+describe('room selector', () => {
   it('returns a list of rooms from state', () => {
     const state = {
       rooms: {
