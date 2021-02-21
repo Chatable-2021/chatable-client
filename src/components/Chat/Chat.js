@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ChatList from '../ChatList/ChatList';
 import styles from './Chat.css';
 import ChatForm from '../ChatForm/ChatForm';
+import { setMessages } from '../../actions/chatActions/chatActions';
+import { getMessages } from '../../selectors/chatSelector/chatSelector';
 
 function Chat({ socket, user }) {
-  const [messages, setMessages] = useState([]);
+  const dispatch = useDispatch();
+
+  // const [messages, setMessages] = useState([]);
 
   const location = useLocation();
   function useQuery() {
@@ -16,6 +21,8 @@ function Chat({ socket, user }) {
   }
 
   const id = useQuery();
+
+  const messages = useSelector(getMessages(id));
 
   useEffect(() => {
     if (socket) {
@@ -26,7 +33,10 @@ function Chat({ socket, user }) {
   useEffect(() => {
     if (socket) {
       socket.on('JOIN_RESULTS', payload => {
-        setMessages(payload.messages);
+        // setMessages(payload.messages);
+        if (id !== null) {
+          dispatch(setMessages(id, payload.messages));
+        }
       });
 
       socket.on('BROADCAST_JOIN', payload => {
@@ -43,7 +53,7 @@ function Chat({ socket, user }) {
         socket.off('MESSAGE_RESULTS');
       };
     }
-  }, []);
+  }, [id]);
 
   return (
     <section className={styles.container}>
