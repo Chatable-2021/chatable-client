@@ -1,4 +1,5 @@
 import { SET_ROOMS } from '../../actions/roomActions/roomActions';
+import { filterOutDuplicates } from '../../utility/filterOutDuplicates';
 
 export const initialState = {
   rooms: [],
@@ -9,7 +10,10 @@ export default function roomReducer(state = initialState, action) {
     case SET_ROOMS:
       return {
         ...state,
-        rooms: [...state.rooms, ...action.payload],
+        rooms: [
+          ...state.rooms,
+          ...filterOutDuplicates(state.rooms || [], action.payload),
+        ],
       };
     default:
       return state;
