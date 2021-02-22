@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,13 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChatList from '../ChatList/ChatList';
 import styles from './Chat.css';
 import ChatForm from '../ChatForm/ChatForm';
-import { setMessages } from '../../actions/chatActions/chatActions';
+import { setMessages, addMessage } from '../../actions/chatActions/chatActions';
 import { getMessages } from '../../selectors/chatSelector/chatSelector';
 
 function Chat({ socket, user }) {
   const dispatch = useDispatch();
-
-  // const [messages, setMessages] = useState([]);
 
   const location = useLocation();
   function useQuery() {
@@ -33,7 +31,6 @@ function Chat({ socket, user }) {
   useEffect(() => {
     if (socket) {
       socket.on('JOIN_RESULTS', payload => {
-        // setMessages(payload.messages);
         if (id !== null) {
           dispatch(setMessages(id, payload.messages));
         }
@@ -44,7 +41,7 @@ function Chat({ socket, user }) {
       });
 
       socket.on('MESSAGE_RESULTS', payload => {
-        setMessages(messages => [...messages, payload]);
+        dispatch(addMessage(payload));
       });
 
       return () => {
