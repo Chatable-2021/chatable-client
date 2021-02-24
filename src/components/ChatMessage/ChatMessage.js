@@ -3,7 +3,6 @@ import styles from './ChatMessage.css';
 import ReactEmoji from 'react-emoji';
 
 export default function ChatMessage({ message, user, isLastMessage }) {
-  console.log(message, 'message');
   const messageRef = useRef(null);
 
   const scrollToLastMessage = () => {
@@ -27,11 +26,7 @@ export default function ChatMessage({ message, user, isLastMessage }) {
           {ReactEmoji.emojify(message.messageText)}
         </p>
       </li>
-      {isUserMessage ? (
-        <p className={styles.userName}>You</p>
-      ) : (
-        <div></div>
-      )}
+      {isUserMessage ? <p className={styles.userName}>You</p> : <div></div>}
 
       {isNotUserMessage ? (
         <p className={styles.guestName}>{message.userName}</p>

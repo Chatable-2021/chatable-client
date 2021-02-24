@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { io } from 'socket.io-client';
+
 import RoomContainer from './components/RoomContainer/RoomContainer';
 import Home from './components/Home/Home';
 import Signup from './components/Signup/Signup';
@@ -28,9 +29,9 @@ const App = () => {
         <Router>
           <Header user={user} handleLogout={handleLogout} />
           <Switch>
-            <Route path="/" exact component={() => <Home user={user} />} />
+            <Route path='/' exact component={() => <Home user={user} />} />
             <Route
-              path="/room"
+              path='/room'
               component={() => (
                 <RoomContainer
                   handleLogout={handleLogout}
@@ -38,16 +39,16 @@ const App = () => {
                   socket={socket}
                 />
               )}
-            />            
+            />
             <Route
-              path="/signup"
+              path='/signup'
               exact
               component={() => (
                 <Signup user={user} socket={socket} setUser={setUser} />
               )}
             />
             <Route
-              path="/login"
+              path='/login'
               exact
               component={() => (
                 <Login user={user} socket={socket} setUser={setUser} />

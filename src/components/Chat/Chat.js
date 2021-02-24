@@ -1,49 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import ChatList from "../ChatList/ChatList";
-import styles from "./Chat.css";
-import ChatForm from "../ChatForm/ChatForm";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ChatList from '../ChatList/ChatList';
+import styles from './Chat.css';
+import ChatForm from '../ChatForm/ChatForm';
+import { setMessages, addMessage } from '../../actions/chatActions/chatActions';
+import { getMessages } from '../../selectors/chatSelector/chatSelector';
 
 function Chat({ socket, user }) {
-  const [messages, setMessages] = useState([]);
+  const dispatch = useDispatch();
 
   const location = useLocation();
   function useQuery() {
     const query = new URLSearchParams(location.search);
-    return query.get("id");
+    return query.get('id');
   }
 
   const id = useQuery();
 
+  const messages = useSelector(getMessages(id));
+
   useEffect(() => {
     if (socket) {
-      socket.emit("JOIN_ROOM", { id, user });
+      socket.emit('JOIN_ROOM', { id, user });
     }
   }, [id]);
 
   useEffect(() => {
     if (socket) {
-      socket.on("JOIN_RESULTS", (payload) => {
-        setMessages(payload.messages);
+      socket.on('JOIN_RESULTS', payload => {
+        if (id !== null) {
+          dispatch(setMessages(id, payload.messages));
+        }
       });
 
-      socket.on("BROADCAST_JOIN", (payload) => {
-        console.log(payload, "everyones message");
+      socket.on('BROADCAST_JOIN', payload => {
+        console.log(payload, 'everyones message');
       });
 
-      socket.on("MESSAGE_RESULTS", (payload) => {
-        console.log(payload);
-        setMessages((messages) => [...messages, payload]);
+      socket.on('MESSAGE_RESULTS', payload => {
+        dispatch(addMessage(payload));
       });
 
       return () => {
-        socket.off("JOIN_RESULTS");
-        socket.off("BROADCAST_JOIN");
-        socket.off("MESSAGE_RESULTS");
+        socket.off('JOIN_RESULTS');
+        socket.off('BROADCAST_JOIN');
+        socket.off('MESSAGE_RESULTS');
       };
     }
-  }, []);
+  }, [id]);
 
   return (
     <section className={styles.container}>
@@ -54,7 +61,7 @@ function Chat({ socket, user }) {
 }
 
 Chat.propTypes = {
-  location: PropTypes.object.isRequired,
+  location: PropTypes.object,
 };
 
 export default Chat;
