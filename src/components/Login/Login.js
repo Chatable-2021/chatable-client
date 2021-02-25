@@ -21,18 +21,20 @@ function Login({ socket, setUser, styles }) {
 
   const history = useHistory();
 
-  // useEffect(() => {
-  //   socket.on('AUTH_RESULTS', authResults => {
-  //     if (!authResults.success) {
-  //       setError(authResults.message);
-  //       setInvalid(true);
-  //     } else {
-  //       setUser(authResults.user);
-  //       history.push('/room');
-  //     }
-  //     return () => socket.off();
-  //   });
-  // }, []);
+  useEffect(() => {
+    if (socket) {
+      socket.on('AUTH_RESULTS', authResults => {
+        if (!authResults.success) {
+          setError(authResults.message);
+          setInvalid(true);
+        } else {
+          setUser(authResults.user);
+          history.push('/room');
+        }
+        return () => socket.off();
+      });
+    }
+  }, []);
 
   const handleLogin = formValues => {
     socket.emit('LOGIN', formValues);
@@ -70,6 +72,7 @@ Login.propTypes = {
     close: PropTypes.func.isRequired,
   }),
   setUser: PropTypes.func.isRequired,
+  styles: PropTypes.object,
 };
 
 export default Login;
