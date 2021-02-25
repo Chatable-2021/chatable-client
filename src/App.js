@@ -7,7 +7,6 @@ import {
   responsiveFontSizes,
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import RoomContainer from './components/RoomContainer/RoomContainer';
 import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
