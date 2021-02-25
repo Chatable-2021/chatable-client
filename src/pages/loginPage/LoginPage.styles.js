@@ -13,8 +13,15 @@ const useStyles = makeStyles({
   },
   contentContainer: {
     maxWidth: 400,
-    maxHeight: 500,
     marginTop: 20,
+  },
+  link: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  linksContainer: {
+    textAlign: 'center',
   },
   logo: {
     height: '100%',
