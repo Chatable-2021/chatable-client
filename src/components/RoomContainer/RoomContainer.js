@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,8 +8,9 @@ import { getRooms } from '../../selectors/roomSelector/roomSelector';
 import { setRooms } from '../../actions/roomActions/roomActions';
 import Chat from '../Chat/Chat';
 import styles from './RoomContainer.css';
+import Header from '../Header/Header';
 
-function RoomContainer({ user, socket }) {
+function RoomContainer({ user, socket, handleLogout }) {
   const dispatch = useDispatch();
   const rooms = useSelector(getRooms);
 
@@ -24,15 +25,18 @@ function RoomContainer({ user, socket }) {
   }, []);
 
   return (
-    <main className={styles.container}>
-      <nav className={styles.rooms}>
-        <RoomForm user={user} socket={socket} />
-        <RoomList socket={socket} rooms={rooms} />
-      </nav>
-      <section className={styles.chat}>
-        <Chat user={user} socket={socket} />
-      </section>
-    </main>
+    <>
+      <Header user={user} handleLogout={handleLogout} />
+      <main className={styles.container}>
+        <nav className={styles.rooms}>
+          <RoomForm user={user} socket={socket} />
+          <RoomList socket={socket} rooms={rooms} />
+        </nav>
+        <section className={styles.chat}>
+          <Chat user={user} socket={socket} />
+        </section>
+      </main>
+    </>
   );
 }
 

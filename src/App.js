@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { io } from 'socket.io-client';
-
+import {
+  createMuiTheme,
+  ThemeProvider,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import RoomContainer from './components/RoomContainer/RoomContainer';
-import Home from './components/Home/Home';
-import Signup from './components/Signup/Signup';
-import Login from './components/Login/Login';
+import HomePage from './pages/homePage/HomePage';
+import LoginPage from './pages/loginPage/LoginPage';
+import SignupPage from './pages/signupPage/SignupPage';
 import styles from './App.css';
 import Header from './components/Header/Header.js';
 
@@ -23,13 +28,42 @@ const App = () => {
     setUser({});
   };
 
+  let theme = createMuiTheme({
+    typography: {
+      fontFamily: 'sans-serif',
+    },
+    palette: {
+      primary: {
+        light: '#c4d8cb',
+        main: '#26a69a',
+        dark: '#00766c',
+        contrastText: '#fff',
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1600,
+      },
+    },
+  });
+
+  theme = responsiveFontSizes(theme);
+
   return (
-    <>
-      <div className={styles.root}>
-        <Router>
-          <Header user={user} handleLogout={handleLogout} />
+    <main className={styles.root}>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Switch>
-            <Route path='/' exact component={() => <Home user={user} />} />
+            <Route
+              path='/'
+              exact
+              component={() => <HomePage socket={socket} setUser={setUser} />}
+            />
             <Route
               path='/room'
               component={() => (
@@ -43,21 +77,17 @@ const App = () => {
             <Route
               path='/signup'
               exact
-              component={() => (
-                <Signup user={user} socket={socket} setUser={setUser} />
-              )}
+              component={() => <SignupPage socket={socket} setUser={setUser} />}
             />
             <Route
               path='/login'
               exact
-              component={() => (
-                <Login user={user} socket={socket} setUser={setUser} />
-              )}
+              component={() => <LoginPage socket={socket} setUser={setUser} />}
             />
           </Switch>
-        </Router>
-      </div>
-    </>
+        </ThemeProvider>
+      </Router>
+    </main>
   );
 };
 
