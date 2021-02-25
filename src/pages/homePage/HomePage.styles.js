@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     padding: 15,
     [theme.breakpoints.up('sm')]: {
       justifyContent: 'center',
+      padding: 15,
     },
     [theme.breakpoints.up('md')]: {
       height: '100%',
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
+    padding: 20,
     [theme.breakpoints.up('sm')]: {
       padding: 20,
       maxWidth: 500,

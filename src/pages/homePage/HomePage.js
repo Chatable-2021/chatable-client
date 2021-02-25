@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Grid, Box } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -11,12 +11,26 @@ import blueLogo from '../../assets/blueLogo.png';
 import backgroundImage from '../../assets/chatable-background.jpeg';
 import Login from '../../components/Login/Login';
 import useStyles from './HomePage.styles';
+import SignUpModal from '../../components/signUpModal/SignUpModal';
 
 function HomePage({ socket, setUser }) {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const theme = useTheme();
   const isScreenSizeXl = useMediaQuery(theme.breakpoints.up('xl'), {
+    noSsr: true,
+  });
+
+  const isScreenSizeSm = useMediaQuery(theme.breakpoints.down('sm'), {
     noSsr: true,
   });
 
@@ -69,7 +83,9 @@ function HomePage({ socket, setUser }) {
                   variant='contained'
                   color='primary'
                   fullWidth={true}
-                  onClick={() => history.push('/signup')}
+                  onClick={
+                    isScreenSizeSm ? () => history.push('/signup') : handleOpen
+                  }
                   styles={{
                     fontWeight: 'bold',
                     maxWidth: 400,
@@ -107,6 +123,17 @@ function HomePage({ socket, setUser }) {
           <img src={backgroundImage} className={classes.image} />
         </Grid>
       </Grid>
+      <SignUpModal
+        socket={socket}
+        setUser={setUser}
+        open={open}
+        handleClose={handleClose}
+        styles={{
+          inputWidth: '100%',
+          buttonWidth: '100%',
+          buttonVariant: 'contained',
+        }}
+      />
     </Container>
   );
 }
