@@ -12,11 +12,12 @@ import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignupPage from './pages/signupPage/SignupPage';
 import styles from './App.css';
-import Header from './components/Header/Header.js';
 
 const App = () => {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState({});
+  const [lightOrDark, setLightOrDark] = useState(true);
+  const palletType = lightOrDark ? 'light' : 'dark';
 
   useEffect(() => {
     const s = io(process.env.SERVER_URL);
@@ -39,6 +40,7 @@ const App = () => {
         dark: '#00766c',
         contrastText: '#fff',
       },
+      type: palletType,
     },
     breakpoints: {
       values: {
@@ -68,6 +70,8 @@ const App = () => {
               path='/room'
               component={() => (
                 <RoomContainer
+                  lightOrDark={lightOrDark}
+                  setLightOrDark={setLightOrDark}
                   handleLogout={handleLogout}
                   user={user}
                   socket={socket}
