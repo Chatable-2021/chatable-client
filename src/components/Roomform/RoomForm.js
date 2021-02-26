@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { roomFormSchema } from './RoomForm.schema';
-import styles from './RoomForm.css';
 import PropTypes from 'prop-types';
 
+import { AppInput, AppButton } from '../controls';
+import { roomFormSchema } from './RoomForm.schema';
+import useStyles from './RoomForm.styles';
+
 function RoomForm({ user, socket }) {
+  const classes = useStyles();
+
   const userId = user?.id;
 
   const { register, handleSubmit, reset, getValues } = useForm({
@@ -24,19 +28,24 @@ function RoomForm({ user, socket }) {
   };
 
   return (
-    <form className={styles.container} onSubmit={handleSubmit(handleRoomForm)}>
+    <form className={classes.root} onSubmit={handleSubmit(handleRoomForm)}>
       <input hidden ref={register} name='userId' />
-      <div className={styles.inputWrapper}>
-        <input
-          name='name'
-          className={styles.formInput}
-          placeholder='Create A Room'
-          ref={register}
-        />
-        <button type='submit' className={styles.submitButton}>
-          Create
-        </button>
-      </div>
+      <AppInput
+        color='primary'
+        name='name'
+        inputRef={register}
+        variant='outlined'
+        label='Create a room'
+        size='small'
+      />
+      <AppButton
+        color='primary'
+        type='submit'
+        variant='contained'
+        styles={{ height: 40 }}
+      >
+        Create
+      </AppButton>
     </form>
   );
 }
