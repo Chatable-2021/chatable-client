@@ -1,16 +1,25 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box } from '@material-ui/core';
 
 import RoomForm from '../Roomform/RoomForm';
 import RoomList from '../RoomList/RoomList';
 import { getRooms } from '../../selectors/roomSelector/roomSelector';
 import { setRooms } from '../../actions/roomActions/roomActions';
 import Chat from '../Chat/Chat';
-import styles from './RoomContainer.css';
 import Header from '../Header/Header';
+import useStyles from './RoomContainer.styles';
 
-function RoomContainer({ user, socket, handleLogout }) {
+function RoomContainer({
+  user,
+  socket,
+  handleLogout,
+  setLightOrDark,
+  lightOrDark,
+}) {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const rooms = useSelector(getRooms);
 
@@ -26,16 +35,21 @@ function RoomContainer({ user, socket, handleLogout }) {
 
   return (
     <>
-      <Header user={user} handleLogout={handleLogout} />
-      <main className={styles.container}>
-        <nav className={styles.rooms}>
+      <Header
+        user={user}
+        handleLogout={handleLogout}
+        lightOrDark={lightOrDark}
+        setLightOrDark={setLightOrDark}
+      />
+      <Box component='main' className={classes.root}>
+        <Box component='nav' className={classes.rooms}>
           <RoomForm user={user} socket={socket} />
           <RoomList socket={socket} rooms={rooms} />
-        </nav>
-        <section className={styles.chat}>
+        </Box>
+        <Box component='section' className={classes.chat}>
           <Chat user={user} socket={socket} />
-        </section>
-      </main>
+        </Box>
+      </Box>
     </>
   );
 }
@@ -48,6 +62,8 @@ RoomContainer.propTypes = {
     off: PropTypes.func.isRequired,
   }),
   handleLogout: PropTypes.func.isRequired,
+  lightOrDark: PropTypes.bool,
+  setLightOrDark: PropTypes.func,
 };
 
 export default RoomContainer;
