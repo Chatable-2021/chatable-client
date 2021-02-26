@@ -6,9 +6,9 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  max-height: calc(100vh - 160px);
+  max-height: calc(100vh - 136px);
   overflow: scroll;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-} 
+}
