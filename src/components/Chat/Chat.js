@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ChatList from '../ChatList/ChatList';
-import styles from './Chat.css';
 import ChatForm from '../ChatForm/ChatForm';
 import { setMessages, addMessage } from '../../actions/chatActions/chatActions';
 import { getMessages } from '../../selectors/chatSelector/chatSelector';
+import useStyles from './Chat.styles';
 
 function Chat({ socket, user }) {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -53,7 +55,7 @@ function Chat({ socket, user }) {
   }, [id]);
 
   return (
-    <section className={styles.container}>
+    <section className={classes.root}>
       <ChatList roomId={id} user={user} messages={messages} socket={socket} />
       <ChatForm roomId={id} user={user} messages={messages} socket={socket} />
     </section>

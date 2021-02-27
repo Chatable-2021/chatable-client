@@ -1,24 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import RoomListItem from '../RoomListItem/RoomListItem';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 
 import List from '@material-ui/core/List';
-
-const useStyles = makeStyles({
-  list: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    flexGrow: 1,
-    width: '100%',
-    boxSizing: 'border-box',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
-    display: 'flex',
-    flexDirection: 'column-reverse',
-  },
-});
+import RoomListItem from '../RoomListItem/RoomListItem';
+import useStyles from './RoomList.styles';
 
 const RoomList = ({ rooms, socket }) => {
   const roomsBeginningRef = useRef(null);
@@ -33,7 +18,7 @@ const RoomList = ({ rooms, socket }) => {
   }, [rooms]);
 
   return (
-    <List component='ul' className={classes.list}>
+    <List component='ul' className={classes.root}>
       {rooms
         ? rooms.map(room => (
             <RoomListItem socket={socket} key={room.id} room={room} />

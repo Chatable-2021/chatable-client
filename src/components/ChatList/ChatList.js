@@ -1,22 +1,29 @@
 import React from 'react';
+import { List, Container, Box } from '@material-ui/core';
+
 import ChatMessage from '../ChatMessage/ChatMessage';
-import styles from './ChatList.css';
+import useStyles from './ChatList.styles';
 
 export default function ChatList({ user, messages }) {
+  const classes = useStyles();
   return (
-    <section className={styles.container}>
-      <ul className={styles.chatList}>
+    <Container
+      component='section'
+      disableGutters={true}
+      className={classes.root}
+    >
+      <List disablePadding={true} className={classes.list}>
         {messages
           ? messages.map((message, index) => (
-            <ChatMessage
-              isLastMessage={index === messages.length - 1}
-              key={message.id}
-              user={user}
-              message={message}
-            />
-          ))
+              <ChatMessage
+                isLastMessage={index === messages.length - 1}
+                key={message.id}
+                user={user}
+                message={message}
+              />
+            ))
           : null}
-      </ul>
-    </section>
+      </List>
+    </Container>
   );
 }
