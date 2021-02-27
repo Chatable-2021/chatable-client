@@ -2,15 +2,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
     flexGrow: 1,
     width: '100%',
-    boxSizing: 'border-box',
-    overflowY: 'scroll',
+    display: 'flex',
+    alignItems: 'flex-end',
+    maxWidth: 'none',
+  },
+  list: {
+    maxHeight: 'calc(100vh - 136px)',
+    overflow: 'scroll',
     overflowX: 'hidden',
     display: 'flex',
+    width: '100%',
     flexDirection: 'column',
   },
 });

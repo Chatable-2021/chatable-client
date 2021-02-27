@@ -7,18 +7,21 @@ import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 
 import LightDarkButton from '../lightDarkButton/LightDarkButton';
 import blueLogo from '../../assets/blueLogo.png';
+import whiteLogo from '../../assets/whiteLogo.png';
 import useStyles from './Header.styles';
 
 function Header({ user, handleLogout, lightOrDark, setLightOrDark }) {
+  const lightOrDarkLogo = lightOrDark ? whiteLogo : blueLogo;
+  const lightOrDarkRoot = lightOrDark ? 'lightRoot' : 'darkRoot';
   const classes = useStyles();
   return (
-    <AppBar elevation={0} position='static' className={classes.root}>
+    <AppBar position='relative' className={classes[lightOrDarkRoot]}>
       <Toolbar className={classes.toolbar}>
         <Box className={classes.logoContainer}>
-          <img src={blueLogo} className={classes.logo} />
+          <img src={lightOrDarkLogo} className={classes.logo} />
         </Box>
         <Box>
-          <IconButton size='medium'>
+          <IconButton size='medium' className={classes.iconButton}>
             <AccountCircleIcon fontSize='large' />
           </IconButton>
 
@@ -27,7 +30,7 @@ function Header({ user, handleLogout, lightOrDark, setLightOrDark }) {
             setLightOrDark={setLightOrDark}
           />
 
-          <IconButton size='medium'>
+          <IconButton size='medium' className={classes.iconButton}>
             <ArrowDropDownCircleIcon fontSize='large' />
           </IconButton>
         </Box>

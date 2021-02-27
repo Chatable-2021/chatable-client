@@ -4,15 +4,27 @@ import { IconButton } from '@material-ui/core';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 
+import useStyles from './LightDarkButton.styles';
+
 function LightDarkButton({ lightOrDark, setLightOrDark }) {
+  const classes = useStyles();
+
   return (
     <>
       {lightOrDark ? (
-        <IconButton size='medium' onClick={() => setLightOrDark(false)}>
+        <IconButton
+          className={classes.root}
+          size='medium'
+          onClick={() => setLightOrDark(false)}
+        >
           <Brightness7Icon fontSize='large' />
         </IconButton>
       ) : (
-        <IconButton size='medium' onClick={() => setLightOrDark(true)}>
+        <IconButton
+          className={classes.root}
+          size='medium'
+          onClick={() => setLightOrDark(true)}
+        >
           <Brightness4Icon fontSize='large' />
         </IconButton>
       )}

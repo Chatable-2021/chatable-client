@@ -41,7 +41,7 @@ export default function ChatForm({ user, socket, roomId }) {
         color='primary'
         type='submit'
         variant='contained'
-        styles={{ width: '20%' }}
+        styles={{ width: '15%' }}
       >
         Send
       </AppButton>

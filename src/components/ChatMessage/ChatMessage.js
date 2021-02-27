@@ -1,8 +1,25 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './ChatMessage.css';
 import ReactEmoji from 'react-emoji';
+import {
+  ListItem,
+  ListItemText,
+  Avatar,
+  ListItemIcon,
+  Typography,
+  Box,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    alignItems: 'flex-start',
+  },
+});
 
 export default function ChatMessage({ message, user, isLastMessage }) {
+  const classes = useStyles();
+
   const messageRef = useRef(null);
 
   const scrollToLastMessage = () => {
@@ -14,6 +31,7 @@ export default function ChatMessage({ message, user, isLastMessage }) {
   const isUserMessage = message.userId === user.id;
   const isNotUserMessage = message.userId !== user.id;
   const sendOrRecieve = isUserMessage ? 'Send' : 'Recieve';
+  const userName = message.userName;
 
   useEffect(() => {
     scrollToLastMessage();
@@ -21,18 +39,22 @@ export default function ChatMessage({ message, user, isLastMessage }) {
 
   return (
     <>
-      <li className={styles[`text${sendOrRecieve}`]} ref={messageRef}>
-        <p className={styles.message}>
-          {ReactEmoji.emojify(message.messageText)}
-        </p>
-      </li>
-      {isUserMessage ? <p className={styles.userName}>You</p> : <div></div>}
+      <ListItem className={classes.root} ref={messageRef}>
+        <ListItemIcon>
+          <Avatar alt={userName} src='./broken' />
+        </ListItemIcon>
+        <Box>
+          <Typography>{message.userName}</Typography>
+          <Typography>{ReactEmoji.emojify(message.messageText)}</Typography>
+        </Box>
+      </ListItem>
+      {/* {isUserMessage ? <Typography>You</Typography> : <div></div>}
 
       {isNotUserMessage ? (
-        <p className={styles.guestName}>{message.userName}</p>
+        <Typography>{message.userName}</Typography>
       ) : (
         <div></div>
-      )}
+      )} */}
     </>
   );
 }

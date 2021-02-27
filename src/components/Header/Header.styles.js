@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  lightRoot: {
+    display: 'flex',
+    backgroundColor: theme.palette.primary.main,
+    height: 80,
+  },
+  darkRoot: {
     display: 'flex',
     backgroundColor: theme.palette.background.default,
     height: 80,
@@ -17,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
   logoContainer: {
     height: '3rem',
+  },
+  iconButton: {
+    color: theme.palette.common.white,
   },
 }));
 

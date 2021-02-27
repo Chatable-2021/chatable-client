@@ -37,6 +37,7 @@ function RoomForm({ user, socket }) {
         variant='outlined'
         label='Create a room'
         size='small'
+        fullWidth={true}
       />
       <AppButton
         color='primary'

@@ -7,10 +7,12 @@ const useStyles = makeStyles(theme => ({
     minHeight: 'calc(100vh - 80px)',
   },
   rooms: {
+    backgroundColor: theme.palette.background.default,
     maxHeight: 'calc(100vh - 80px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    minWidth: 300,
   },
   chat: {
     flexGrow: 1,
