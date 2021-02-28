@@ -20,7 +20,9 @@ const App = () => {
   const palletType = lightOrDark ? 'light' : 'dark';
 
   useEffect(() => {
-    const s = io(process.env.SERVER_URL);
+    const s = io(process.env.SERVER_URL, {
+      withCredentials: true,
+    });
     setSocket(s);
     return () => s.close();
   }, []);
