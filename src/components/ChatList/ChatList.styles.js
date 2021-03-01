@@ -16,6 +16,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
+      overflow: 'scroll',
+      overflowX: 'hidden',
       maxHeight: '100vh',
       paddingTop: 80,
       paddingBottom: 56,
