@@ -11,8 +11,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    alignItems: 'flex-start',
+    display: 'inline',
     padding: theme.spacing(2),
   },
 }));
@@ -28,9 +27,6 @@ export default function ChatMessage({ message, user, isLastMessage }) {
     }
   };
 
-  const isUserMessage = message.userId === user.id;
-  const isNotUserMessage = message.userId !== user.id;
-  const sendOrRecieve = isUserMessage ? 'Send' : 'Recieve';
   const userName = message.userName;
 
   useEffect(() => {
