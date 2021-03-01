@@ -9,10 +9,9 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 'none',
     touchAction: 'none',
     maxHeight: 'calc(100vh - 136px)',
-    // [theme.breakpoints.down('xs')]: {
-    //   paddingTop: 80,
-    //   paddingBottom: 56,
-    // },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: 80,
+    },
   },
   list: {
     maxHeight: 'calc(100vh - 136px)',
