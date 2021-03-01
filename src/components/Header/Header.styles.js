@@ -22,8 +22,7 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 300,
     },
     [theme.breakpoints.down('xs')]: {
-      position: 'absolute',
-      top: 0,
+      position: 'fixed',
     },
   },
   toolbar: {
