@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
       width: 'calc(100% - 300px)',
       marginLeft: 300,
     },
+    // [theme.breakpoints.down('xs')]: {
+    //   position: 'fixed',
+    // },
   },
   darkRoot: {
     display: 'flex',
@@ -18,6 +21,9 @@ const useStyles = makeStyles(theme => ({
       width: 'calc(100% - 300px)',
       marginLeft: 300,
     },
+    // [theme.breakpoints.down('xs')]: {
+    //   position: 'fixed',
+    // },
   },
   toolbar: {
     height: '100%',
