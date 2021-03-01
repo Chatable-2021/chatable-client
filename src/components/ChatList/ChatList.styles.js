@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
@@ -15,7 +15,12 @@ const useStyles = makeStyles({
     display: 'flex',
     width: '100%',
     flexDirection: 'column',
+    [theme.breakpoints.down('xs')]: {
+      maxHeight: '100vh',
+      paddingTop: 80,
+      paddingBottom: 56,
+    },
   },
-});
+}));
 
 export default useStyles;
