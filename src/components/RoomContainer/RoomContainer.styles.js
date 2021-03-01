@@ -7,6 +7,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 'calc(100vh - 80px)',
     [theme.breakpoints.down('xs')]: {
       minHeight: 'calc(100vh - 80px)',
+      marginTop: 24,
     },
   },
   chat: {

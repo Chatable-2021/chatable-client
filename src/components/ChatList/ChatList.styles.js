@@ -10,8 +10,7 @@ const useStyles = makeStyles(theme => ({
     touchAction: 'none',
     maxHeight: 'calc(100vh - 136px)',
     [theme.breakpoints.down('xs')]: {
-      marginTop: 80,
-      marginBottom: 56,
+      marginTop: 56,
     },
   },
   list: {
