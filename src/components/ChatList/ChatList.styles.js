@@ -8,6 +8,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     maxWidth: 'none',
     [theme.breakpoints.down('xs')]: {
+      overflow: 'scroll',
+      overflowX: 'hidden',
       maxHeight: '100vh',
       paddingTop: 80,
       paddingBottom: 56,
