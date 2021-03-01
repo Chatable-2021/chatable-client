@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import ReactEmoji from 'react-emoji';
 import {
   ListItem,
-  ListItemText,
   Avatar,
   ListItemIcon,
   Typography,

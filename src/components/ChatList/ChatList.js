@@ -3,7 +3,6 @@ import { List, Container } from '@material-ui/core';
 
 import ChatMessage from '../ChatMessage/ChatMessage';
 import useStyles from './ChatList.styles';
-import styles from './chatList.css';
 
 export default function ChatList({ user, messages }) {
   const classes = useStyles();
