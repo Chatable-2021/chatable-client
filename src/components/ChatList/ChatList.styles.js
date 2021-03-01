@@ -7,6 +7,11 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'flex-end',
     maxWidth: 'none',
+    [theme.breakpoints.down('xs')]: {
+      maxHeight: '100vh',
+      marginTop: 80,
+      marginBottom: 56,
+    },
   },
   list: {
     maxHeight: 'calc(100vh - 136px)',
@@ -16,11 +21,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
-      overflow: 'scroll',
-      overflowX: 'hidden',
-      maxHeight: '100vh',
-      paddingTop: 80,
-      paddingBottom: 56,
+      minHeight: '100%',
+      maxHeight: '100%',
     },
   },
 }));
