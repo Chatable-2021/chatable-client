@@ -21,7 +21,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
-      overflow: 'auto',
+      height: '100%',
+      overflowScrolling: 'touch',
+      WebkitOverflowScrolling: 'touch',
     },
   },
 }));
