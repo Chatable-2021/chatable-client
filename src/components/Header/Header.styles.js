@@ -5,11 +5,19 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
     height: 80,
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 300px)',
+      marginLeft: 300,
+    },
   },
   darkRoot: {
     display: 'flex',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.paper,
     height: 80,
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 300px)',
+      marginLeft: 300,
+    },
   },
   toolbar: {
     height: '100%',
@@ -22,9 +30,17 @@ const useStyles = makeStyles(theme => ({
   },
   logoContainer: {
     height: '3rem',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   iconButton: {
     color: theme.palette.common.white,
+  },
+  menuButton: {
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    },
   },
 }));
 

@@ -30,6 +30,11 @@ const App = () => {
   };
 
   let theme = createMuiTheme({
+    mixins: {
+      toolbar: {
+        minHeight: 80,
+      },
+    },
     typography: {
       fontFamily: 'sans-serif',
     },

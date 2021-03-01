@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@material-ui/core';
 
-import RoomForm from '../Roomform/RoomForm';
-import RoomList from '../RoomList/RoomList';
 import { getRooms } from '../../selectors/roomSelector/roomSelector';
 import { setRooms } from '../../actions/roomActions/roomActions';
 import Chat from '../Chat/Chat';
 import Header from '../Header/Header';
+import Drawer from '../drawer/Drawer';
 import useStyles from './RoomContainer.styles';
 
 function RoomContainer({
@@ -20,8 +20,20 @@ function RoomContainer({
 }) {
   const classes = useStyles();
 
+  const history = useHistory();
+
+  if (!socket) {
+    history.push('/');
+  }
+
   const dispatch = useDispatch();
   const rooms = useSelector(getRooms);
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   useEffect(() => {
     if (socket) {
@@ -36,16 +48,20 @@ function RoomContainer({
   return (
     <>
       <Header
+        handleDrawerToggle={handleDrawerToggle}
         user={user}
         handleLogout={handleLogout}
         lightOrDark={lightOrDark}
         setLightOrDark={setLightOrDark}
       />
-      <Box component='main' className={classes.root}>
-        <Box component='nav' className={classes.rooms}>
-          <RoomForm user={user} socket={socket} />
-          <RoomList socket={socket} rooms={rooms} />
-        </Box>
+      <Box component='section' className={classes.root}>
+        <Drawer
+          socket={socket}
+          user={user}
+          rooms={rooms}
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
+        />
         <Box component='section' className={classes.chat}>
           <Chat user={user} socket={socket} />
         </Box>
