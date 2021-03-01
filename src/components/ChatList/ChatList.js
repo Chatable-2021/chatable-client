@@ -13,7 +13,7 @@ export default function ChatList({ user, messages }) {
       disableGutters={true}
       className={classes.root}
     >
-      <List disablePadding={true} className={styles.list}>
+      <List disablePadding={true} className={classes.list}>
         {messages
           ? messages.map((message, index) => (
               <ChatMessage
