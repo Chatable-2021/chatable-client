@@ -10,12 +10,13 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'flex-start',
+    padding: theme.spacing(2),
   },
-});
+}));
 
 export default function ChatMessage({ message, user, isLastMessage }) {
   const classes = useStyles();
@@ -38,23 +39,14 @@ export default function ChatMessage({ message, user, isLastMessage }) {
   }, []);
 
   return (
-    <>
-      <ListItem className={classes.root} ref={messageRef}>
-        <ListItemIcon>
-          <Avatar alt={userName} src='./broken' />
-        </ListItemIcon>
-        <Box>
-          <Typography>{message.userName}</Typography>
-          <Typography>{ReactEmoji.emojify(message.messageText)}</Typography>
-        </Box>
-      </ListItem>
-      {/* {isUserMessage ? <Typography>You</Typography> : <div></div>}
-
-      {isNotUserMessage ? (
+    <ListItem className={classes.root} ref={messageRef}>
+      <ListItemIcon>
+        <Avatar alt={userName} src='./broken' />
+      </ListItemIcon>
+      <Box>
         <Typography>{message.userName}</Typography>
-      ) : (
-        <div></div>
-      )} */}
-    </>
+        <Typography>{ReactEmoji.emojify(message.messageText)}</Typography>
+      </Box>
+    </ListItem>
   );
 }
