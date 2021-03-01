@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 'calc(100vh - 136px)',
     [theme.breakpoints.down('xs')]: {
       marginTop: 80,
+      marginBottom: 56,
     },
   },
   list: {
