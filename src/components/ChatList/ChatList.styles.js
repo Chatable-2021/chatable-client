@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'flex-end',
     maxWidth: 'none',
     touchAction: 'none',
+    maxHeight: 'calc(100vh - 136px)',
     // [theme.breakpoints.down('xs')]: {
     //   paddingTop: 80,
     //   paddingBottom: 56,
