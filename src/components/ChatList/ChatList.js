@@ -1,8 +1,9 @@
 import React from 'react';
-import { List, Container, Box } from '@material-ui/core';
+import { List, Container } from '@material-ui/core';
 
 import ChatMessage from '../ChatMessage/ChatMessage';
 import useStyles from './ChatList.styles';
+import styles from './chatList.css';
 
 export default function ChatList({ user, messages }) {
   const classes = useStyles();
@@ -12,7 +13,7 @@ export default function ChatList({ user, messages }) {
       disableGutters={true}
       className={classes.root}
     >
-      <List disablePadding={true} className={classes.list}>
+      <List disablePadding={true} className={styles.list}>
         {messages
           ? messages.map((message, index) => (
               <ChatMessage

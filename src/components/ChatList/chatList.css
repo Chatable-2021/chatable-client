@@ -1,0 +1,9 @@
+.list {
+  max-height: calc(100vh - 136px);
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
