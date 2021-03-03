@@ -7,7 +7,6 @@ import {
   responsiveFontSizes,
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Div100vh from 'react-div-100vh';
 
 import RoomContainer from './components/RoomContainer/RoomContainer';
 import HomePage from './pages/homePage/HomePage';
@@ -63,7 +62,7 @@ const App = () => {
   theme = responsiveFontSizes(theme);
 
   return (
-    <Div100vh className={styles.root}>
+    <main className={styles.root}>
       <Router>
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -98,7 +97,7 @@ const App = () => {
           </Switch>
         </ThemeProvider>
       </Router>
-    </Div100vh>
+    </main>
   );
 };
 
