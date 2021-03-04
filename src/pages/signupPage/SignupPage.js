@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Box } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 import AppText from '../../components/appText/AppText';
 import blueLogo from '../../assets/blueLogo.png';

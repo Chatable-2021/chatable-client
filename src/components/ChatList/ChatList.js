@@ -1,5 +1,6 @@
 import React from 'react';
-import { List, Container } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import Container from '@material-ui/core/Container';
 
 import ChatMessage from '../ChatMessage/ChatMessage';
 import useStyles from './ChatList.styles';

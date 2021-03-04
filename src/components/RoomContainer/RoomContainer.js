@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 import { getRooms } from '../../selectors/roomSelector/roomSelector';
 import { setRooms } from '../../actions/roomActions/roomActions';
@@ -22,18 +22,18 @@ function RoomContainer({
 
   const history = useHistory();
 
-  if (!socket) {
-    history.push('/');
-  }
-
-  const dispatch = useDispatch();
-  const rooms = useSelector(getRooms);
+  // if (!socket) {
+  //   history.push('/');
+  // }
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const dispatch = useDispatch();
+  const rooms = useSelector(getRooms);
 
   useEffect(() => {
     if (socket) {
