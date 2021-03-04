@@ -30,7 +30,7 @@ function Signup({ socket, setUser, styles }) {
         } else {
           setUser(authResults.user);
           setInvalid(false);
-          history.push('/room');
+          history.push('/landing-page');
         }
         return () => socket.off('AUTH_RESULTS');
       });

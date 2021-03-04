@@ -12,7 +12,7 @@ const RoomListItem = ({ room, index, selectedRoomByIndex, handleSelected }) => {
   return (
     <ListItem
       classes={{ root: classes.root, selected: classes.selected }}
-      to={`/room/?id=${room.id}`}
+      to={`/landing-page/?id=${room.id}`}
       component={RouterLink}
       button
       divider={true}

@@ -1,15 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import LightDarkButton from '../lightDarkButton/LightDarkButton';
+import MenuListWithButton from '../menuListWithButton/MenuListWithButton';
 import blueLogo from '../../assets/blueLogo.png';
 import whiteLogo from '../../assets/whiteLogo.png';
 import useStyles from './Header.styles';
@@ -50,9 +49,10 @@ function Header({
             setLightOrDark={setLightOrDark}
           />
 
-          <IconButton size='medium' className={classes.iconButton}>
-            <ArrowDropDownCircleIcon fontSize='large' />
-          </IconButton>
+          <MenuListWithButton
+            handleLogout={handleLogout}
+            setLightOrDark={setLightOrDark}
+          />
         </Box>
       </Toolbar>
     </AppBar>
