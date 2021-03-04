@@ -8,10 +8,10 @@ import {
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import RoomContainer from './components/RoomContainer/RoomContainer';
 import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignupPage from './pages/signupPage/SignupPage';
+import LandingPage from './pages/landingPage/LandingPage';
 import styles from './App.css';
 
 const App = () => {
@@ -73,9 +73,9 @@ const App = () => {
               component={() => <HomePage socket={socket} setUser={setUser} />}
             />
             <Route
-              path='/room'
+              path='/landing-page'
               component={() => (
-                <RoomContainer
+                <LandingPage
                   lightOrDark={lightOrDark}
                   setLightOrDark={setLightOrDark}
                   handleLogout={handleLogout}

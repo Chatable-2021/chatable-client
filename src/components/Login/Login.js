@@ -29,7 +29,7 @@ function Login({ socket, setUser, styles }) {
           setInvalid(true);
         } else {
           setUser(authResults.user);
-          history.push('/room');
+          history.push('/landing-page');
         }
         return () => socket.off();
       });
