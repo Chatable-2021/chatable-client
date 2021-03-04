@@ -1,13 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import List from '@material-ui/core/List';
 import RoomListItem from '../RoomListItem/RoomListItem';
 import useStyles from './RoomList.styles';
+import { selectedRoom } from '../../actions/roomActions/roomActions';
+import { getSelectedRoom } from '../../selectors/roomSelector/roomSelector';
 
-const RoomList = ({ rooms, socket }) => {
-  const roomsBeginningRef = useRef(null);
+const RoomList = ({ rooms }) => {
   const classes = useStyles();
+
+  const roomsBeginningRef = useRef(null);
+
+  const dispatch = useDispatch();
+
+  const handleSelected = index => {
+    dispatch(selectedRoom(index));
+  };
+
+  const selectedRoomByIndex = useSelector(getSelectedRoom);
 
   const scrollToTop = () => {
     roomsBeginningRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -20,8 +32,14 @@ const RoomList = ({ rooms, socket }) => {
   return (
     <List component='ul' className={classes.root}>
       {rooms
-        ? rooms.map(room => (
-            <RoomListItem socket={socket} key={room.id} room={room} />
+        ? rooms.map((room, index) => (
+            <RoomListItem
+              key={room.id}
+              room={room}
+              index={index}
+              handleSelected={handleSelected}
+              selectedRoomByIndex={selectedRoomByIndex}
+            />
           ))
         : null}
       <div ref={roomsBeginningRef} />
@@ -31,9 +49,6 @@ const RoomList = ({ rooms, socket }) => {
 
 RoomList.propTypes = {
   rooms: PropTypes.array,
-  socket: PropTypes.shape({
-    emit: PropTypes.func,
-  }),
 };
 
 export default RoomList;

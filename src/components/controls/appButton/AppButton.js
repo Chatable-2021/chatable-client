@@ -1,20 +1,8 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    fontWeight: styles => styles.fontWeight,
-    borderRadius: styles => styles.borderRadius,
-    height: styles => styles.height,
-    margin: styles => styles.margin,
-    width: styles => styles.width,
-    [theme.breakpoints.up('md')]: {
-      maxWidth: styles => styles.maxWidth,
-    },
-  },
-}));
+import useStyles from './AppButton.styles';
 
 function AppButton(props) {
   const { children, styles } = props;

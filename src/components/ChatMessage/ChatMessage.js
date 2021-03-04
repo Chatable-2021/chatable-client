@@ -1,20 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import ReactEmoji from 'react-emoji';
-import {
-  ListItem,
-  Avatar,
-  ListItemIcon,
-  Typography,
-  Box,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'inline',
-    padding: theme.spacing(2),
-  },
-}));
+import useStyles from './ChatMessage.styles';
 
 export default function ChatMessage({ message, user, isLastMessage }) {
   const classes = useStyles();

@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Backdrop, Fade, Paper, Box } from '@material-ui/core';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 import AppText from '../appText/AppText';
 import Signup from '../Signup/Signup';

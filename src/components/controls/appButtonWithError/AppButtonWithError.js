@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 import { AppButton } from '../../controls';
 import AppText from '../../appText/AppText';
-
-const useStyles = makeStyles({
-  buttonBox: {
-    width: styles => styles.buttonWidth,
-  },
-});
+import useStyles from './AppButton.styles';
 
 function AppButtonWithError({ styles, error, invalid, children }) {
   const classes = useStyles(styles);

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Box, Container, Link, useMediaQuery } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 
 import AppText from '../../components/appText/AppText';

@@ -7,6 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import RoomList from '../RoomList/RoomList';
 import RoomForm from '../Roomform/RoomForm';
 import useStyles from './Drawer.styles';
+import Typography from '@material-ui/core/Typography';
 
 function Drawer({ socket, user, rooms, mobileOpen, handleDrawerToggle }) {
   const classes = useStyles();
@@ -15,8 +16,14 @@ function Drawer({ socket, user, rooms, mobileOpen, handleDrawerToggle }) {
     <>
       <div className={classes.toolbar} />
       <Divider />
+      <Typography
+        variant='h5'
+        style={{ textAlign: 'center', marginTop: 10, fontWeight: 'bolder' }}
+      >
+        Rooms list
+      </Typography>
       <RoomForm socket={socket} user={user} />
-      <RoomList socket={socket} rooms={rooms} />
+      <RoomList rooms={rooms} />
     </>
   );
 

@@ -1,4 +1,4 @@
-import { getRooms } from './roomSelector';
+import { getRooms, getSelectedRoom } from './roomSelector';
 
 describe('room selector', () => {
   it('returns a list of rooms from state', () => {
@@ -33,5 +33,25 @@ describe('room selector', () => {
         userId: 3,
       },
     ]);
+  });
+
+  it('returns selected room from state', () => {
+    const state = {
+      rooms: {
+        selectedRoom: {
+          id: 1,
+          name: 'test room',
+          userId: 2,
+        },
+      },
+    };
+
+    const result = getSelectedRoom(state);
+
+    expect(result).toEqual({
+      id: 1,
+      name: 'test room',
+      userId: 2,
+    });
   });
 });

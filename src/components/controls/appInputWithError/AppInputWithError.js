@@ -1,17 +1,10 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 
 import { AppInput } from '../../controls';
 import AppText from '../../appText/AppText';
-
-const useStyles = makeStyles({
-  inputBox: {
-    width: styles => styles.inputWidth,
-    padding: styles => styles.padding,
-  },
-});
+import useStyles from './AppInputWithError.styles';
 
 function AppInputWithError({
   errors,

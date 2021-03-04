@@ -1,17 +1,8 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
-  root: {
-    fontWeight: styles => styles.fontWeight,
-    height: styles => styles.height,
-    padding: styles => styles.padding,
-    color: styles => styles.color,
-    alignSelf: styles => styles.alignSelf,
-  },
-});
+import useStyles from './AppText.styles';
 
 function AppText(props) {
   const { children, styles } = props;

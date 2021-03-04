@@ -1,4 +1,9 @@
-import { setRooms, SET_ROOMS } from './roomActions';
+import {
+  selectedRoom,
+  SELECTED_ROOM,
+  setRooms,
+  SET_ROOMS,
+} from './roomActions';
 
 describe('rooms actions', () => {
   it('sets rooms with setRooms action creator', () => {
@@ -29,6 +34,15 @@ describe('rooms actions', () => {
           userId: 3,
         },
       ],
+    });
+  });
+
+  it('creates a selectedRoom action with the index as its payload', () => {
+    const action = selectedRoom(1);
+
+    expect(action).toEqual({
+      type: SELECTED_ROOM,
+      payload: 1,
     });
   });
 });
