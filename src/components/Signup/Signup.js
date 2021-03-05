@@ -6,12 +6,14 @@ import { signupSchema } from './Signup.schema';
 import PropTypes from 'prop-types';
 
 import { AppInputWithError, AppButtonWithError } from '../controls';
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import useStyles from './Signup.styles';
 
 function Signup({ socket, setUser, styles }) {
   const classes = useStyles();
   const [error, setError] = useState('');
   const [invalid, setInvalid] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(signupSchema),
@@ -30,6 +32,7 @@ function Signup({ socket, setUser, styles }) {
         } else {
           setUser(authResults.user);
           setInvalid(false);
+          setLoading(false);
           history.push('/landing-page');
         }
         return () => socket.off('AUTH_RESULTS');
@@ -39,6 +42,7 @@ function Signup({ socket, setUser, styles }) {
 
   const handleSignup = formValues => {
     socket.emit('SIGN_UP', formValues);
+    setLoading(true);
   };
 
   return (
@@ -58,13 +62,14 @@ function Signup({ socket, setUser, styles }) {
           styles={styles}
         />
         <AppInputWithError
+          autoComplete='new-password'
           errors={errors}
           emailOrPasswordOrName='password'
           register={register}
           styles={styles}
         />
         <AppButtonWithError styles={styles} error={error} invalid={invalid}>
-          Sign Up
+          {loading ? <LoadingSpinner loading={loading} /> : 'Sign Up'}
         </AppButtonWithError>
       </form>
     </>

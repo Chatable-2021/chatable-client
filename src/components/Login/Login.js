@@ -6,9 +6,11 @@ import { loginSchema } from './Login.schema';
 import PropTypes from 'prop-types';
 
 import { AppInputWithError, AppButtonWithError } from '../controls';
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import useStyles from './Login.styles';
 
 function Login({ socket, setUser, styles }) {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [invalid, setInvalid] = useState(false);
   const { register, handleSubmit, errors } = useForm({
@@ -28,16 +30,18 @@ function Login({ socket, setUser, styles }) {
           setError(authResults.message);
           setInvalid(true);
         } else {
+          setLoading(false);
           setUser(authResults.user);
           history.push('/landing-page');
         }
-        return () => socket.off();
+        return () => socket.off('AUTH_RESULTS');
       });
     }
   }, []);
 
   const handleLogin = formValues => {
     socket.emit('LOGIN', formValues);
+    setLoading(true);
   };
 
   return (
@@ -51,13 +55,14 @@ function Login({ socket, setUser, styles }) {
           register={register}
         />
         <AppInputWithError
+          autoComplete='current-pasword'
           errors={errors}
           emailOrPasswordOrName='password'
           styles={styles}
           register={register}
         />
         <AppButtonWithError styles={styles} error={error} invalid={invalid}>
-          Login
+          {loading ? <LoadingSpinner loading={loading} /> : 'Login'}
         </AppButtonWithError>
       </form>
     </>
