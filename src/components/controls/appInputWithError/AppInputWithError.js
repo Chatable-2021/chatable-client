@@ -12,6 +12,7 @@ function AppInputWithError({
   styles,
   register,
   autoFocus,
+  autoComplete,
 }) {
   const classes = useStyles(styles);
   const showError = Boolean(errors[emailOrPasswordOrName]);
@@ -31,6 +32,7 @@ function AppInputWithError({
   return (
     <Box className={classes.inputBox}>
       <AppInput
+        autoComplete={autoComplete}
         autoFocus={autoFocus}
         id={emailOrPasswordOrName}
         name={emailOrPasswordOrName}
