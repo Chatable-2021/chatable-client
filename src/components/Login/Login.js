@@ -29,6 +29,7 @@ function Login({ socket, setUser, styles }) {
         if (!authResults.success) {
           setError(authResults.message);
           setInvalid(true);
+          setLoading(false);
         } else {
           setLoading(false);
           setUser(authResults.user);
