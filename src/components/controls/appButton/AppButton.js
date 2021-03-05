@@ -15,7 +15,7 @@ function AppButton(props) {
 }
 
 AppButton.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
   styles: PropTypes.object,
 };
 
