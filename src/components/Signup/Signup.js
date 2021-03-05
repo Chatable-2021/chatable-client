@@ -29,6 +29,7 @@ function Signup({ socket, setUser, styles }) {
         if (!authResults.success) {
           setError(authResults.message);
           setInvalid(true);
+          setLoading(false);
         } else {
           setUser(authResults.user);
           setInvalid(false);
