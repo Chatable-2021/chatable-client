@@ -23,7 +23,7 @@ function MenuListWithButton({ handleLogout, setLightOrDark }) {
     setOpen(prevOpen => !prevOpen);
   };
 
-  const handleClose = () => {
+  const handleClickAway = () => {
     setOpen(false);
   };
 
@@ -39,22 +39,13 @@ function MenuListWithButton({ handleLogout, setLightOrDark }) {
     history.push('/');
   };
 
+  // close menu on tab
   const handleListKeyDown = event => {
     if (event.key === 'Tab') {
       event.preventDefault();
       setOpen(false);
     }
   };
-
-  // return focus to the button when we transitioned from !open -> open
-  const prevOpen = useRef(open);
-  useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef.current.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open]);
 
   return (
     <>
@@ -78,12 +69,8 @@ function MenuListWithButton({ handleLogout, setLightOrDark }) {
         {({ TransitionProps }) => (
           <Grow {...TransitionProps}>
             <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id='menu-list-grow'
-                  onKeyDown={handleListKeyDown}
-                >
+              <ClickAwayListener onClickAway={handleClickAway}>
+                <MenuList id='menu-list-grow' onKeyDown={handleListKeyDown}>
                   <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
                   <Divider />
                   <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
