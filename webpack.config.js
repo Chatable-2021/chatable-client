@@ -5,11 +5,13 @@ const HtmlPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const env = Object.entries({ ...require('dotenv').config(), ...process.env })
-  .reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, {});
+const env = Object.entries({
+  ...require('dotenv').config(),
+  ...process.env,
+}).reduce((acc, [key, value]) => {
+  acc[key] = value;
+  return acc;
+}, {});
 
 // eslint-disable-next-line
 module.exports = {
@@ -17,24 +19,22 @@ module.exports = {
   output: {
     filename: 'bundle.[hash].js',
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   devServer: {
     port: 7891,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlPlugin({ template: './src/index.html' }),
     new CleanWebpackPlugin(),
     new webpack.EnvironmentPlugin(env),
     new CopyPlugin({
-      patterns: [
-        { from: 'public' },
-      ]
-    })
+      patterns: [{ from: 'public' }],
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -44,23 +44,23 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: true
-          }
-        }
+            cacheDirectory: true,
+          },
+        },
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
               modules: true,
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -71,20 +71,20 @@ module.exports = {
                   require('postcss-import')(),
                   require('autoprefixer')(),
                   require('postcss-nested')(),
-                  require('postcss-simple-vars')()
-                ]
-              }
-            }
-          }
-        ]
+                  require('postcss-simple-vars')(),
+                ],
+              },
+            },
+          },
+        ],
       },
       {
-        test: /\.(jpeg|jpg|png|svg)$/,
+        test: /\.(jpeg|jpg|png|svg|gif)$/,
         use: {
           loader: 'url-loader',
           options: { limit: 1000 },
         },
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
