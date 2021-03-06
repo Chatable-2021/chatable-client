@@ -13,21 +13,6 @@ const useStyles = makeStyles(theme => ({
       minHeight: '100%',
     },
   },
-  divider: {
-    margin: '0 16px 16px 16px',
-  },
-  dividerWithMessages: {
-    margin: '0 16px 0 16px',
-  },
-  initialMessageContainer: {
-    padding: theme.spacing(2),
-    display: 'block',
-  },
-  initialMessageSubtitle: {},
-  initialMessageTitle: {
-    paddingBottom: theme.spacing(1),
-    fontWeight: 900,
-  },
   list: {
     maxHeight: 'calc(100vh - 136px)',
     overflow: 'scroll',
