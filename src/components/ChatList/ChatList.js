@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 
 import ChatMessage from '../ChatMessage/ChatMessage';
+import InitialChatMessage from '../initialChatMessage/InitialChatMessage';
 import useStyles from './ChatList.styles';
 
-export default function ChatList({ user, messages }) {
+function ChatList({ user, messages }) {
   const classes = useStyles();
+
+  const isMessages = messages?.length;
+
   return (
     <Container
       component='section'
@@ -14,6 +19,8 @@ export default function ChatList({ user, messages }) {
       className={classes.root}
     >
       <List disablePadding={true} className={classes.list}>
+        <InitialChatMessage isMessages={isMessages} />
+
         {messages
           ? messages.map((message, index) => (
               <ChatMessage
@@ -28,3 +35,10 @@ export default function ChatList({ user, messages }) {
     </Container>
   );
 }
+
+ChatList.propTypes = {
+  user: PropTypes.object,
+  messages: PropTypes.array,
+};
+
+export default ChatList;
