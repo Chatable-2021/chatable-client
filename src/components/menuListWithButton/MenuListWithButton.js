@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -12,12 +13,14 @@ import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle';
 import Divider from '@material-ui/core/Divider';
 
 import useStyles from './MenuListWithButton.styles.js';
+import { setLightDark } from '../../actions/lightDarkActions/lightDarkActions';
 
-function MenuListWithButton({ handleLogout, setLightOrDark }) {
+function MenuListWithButton({ handleLogout }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -34,7 +37,7 @@ function MenuListWithButton({ handleLogout, setLightOrDark }) {
 
   const handleLogoutClick = () => {
     handleLogout();
-    setLightOrDark(true);
+    dispatch(setLightDark(true));
     setOpen(false);
     history.push('/');
   };
@@ -86,7 +89,6 @@ function MenuListWithButton({ handleLogout, setLightOrDark }) {
 
 MenuListWithButton.propTypes = {
   handleLogout: PropTypes.func,
-  setLightOrDark: PropTypes.func,
 };
 
 export default MenuListWithButton;
