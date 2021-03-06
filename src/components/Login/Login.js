@@ -10,16 +10,16 @@ import LoadingSpinner from '../loadingSpinner/LoadingSpinner';
 import useStyles from './Login.styles';
 
 function Login({ socket, setUser, styles }) {
-  const [loading, setLoading] = useState(false);
+  const classes = useStyles(styles);
   const [error, setError] = useState('');
   const [invalid, setInvalid] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
     mode: 'onBlur',
     reValidateMode: 'onBlur',
   });
-
-  const classes = useStyles(styles);
 
   const history = useHistory();
 
@@ -32,11 +32,12 @@ function Login({ socket, setUser, styles }) {
           setLoading(false);
         } else {
           setLoading(false);
+          setInvalid(false);
           setUser(authResults.user);
           history.push('/landing-page');
         }
-        return () => socket.off('AUTH_RESULTS');
       });
+      return () => socket.off('AUTH_RESULTS');
     }
   }, []);
 
