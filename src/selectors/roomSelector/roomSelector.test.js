@@ -1,4 +1,4 @@
-import { getRooms, getSelectedRoom } from './roomSelector';
+import { getRooms, getSelectedRoom, getRoomById } from './roomSelector';
 
 describe('room selector', () => {
   it('returns a list of rooms from state', () => {
@@ -6,14 +6,14 @@ describe('room selector', () => {
       rooms: {
         rooms: [
           {
-            id: 1,
+            id: '1',
             name: 'test room',
-            userId: 2,
+            userId: '2',
           },
           {
-            id: 2,
+            id: '2',
             name: 'different room',
-            userId: 3,
+            userId: '3',
           },
         ],
       },
@@ -23,14 +23,14 @@ describe('room selector', () => {
 
     expect(rooms).toEqual([
       {
-        id: 1,
+        id: '1',
         name: 'test room',
-        userId: 2,
+        userId: '2',
       },
       {
-        id: 2,
+        id: '2',
         name: 'different room',
-        userId: 3,
+        userId: '3',
       },
     ]);
   });
@@ -39,9 +39,9 @@ describe('room selector', () => {
     const state = {
       rooms: {
         selectedRoom: {
-          id: 1,
+          id: '1',
           name: 'test room',
-          userId: 2,
+          userId: '2',
         },
       },
     };
@@ -49,9 +49,36 @@ describe('room selector', () => {
     const result = getSelectedRoom(state);
 
     expect(result).toEqual({
-      id: 1,
+      id: '1',
       name: 'test room',
-      userId: 2,
+      userId: '2',
+    });
+  });
+
+  it('it returns a room by id', () => {
+    const state = {
+      rooms: {
+        rooms: [
+          {
+            id: '1',
+            name: 'test room',
+            userId: '2',
+          },
+          {
+            id: '2',
+            name: 'different room',
+            userId: '3',
+          },
+        ],
+      },
+    };
+
+    const room = getRoomById('1')(state);
+
+    expect(room).toEqual({
+      id: '1',
+      name: 'test room',
+      userId: '2',
     });
   });
 });
