@@ -33,7 +33,7 @@ function InitialChatMessage({ isMessages }) {
           {room ? `this is the start of the #${roomName} room.` : ''}
         </Typography>
       </ListItem>
-      <Divider className={classes[isThereMessages]} />
+      {room ? <Divider className={classes[isThereMessages]} /> : null}
     </>
   );
 }
