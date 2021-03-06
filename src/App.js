@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import {
@@ -12,12 +13,14 @@ import HomePage from './pages/homePage/HomePage';
 import LoginPage from './pages/loginPage/LoginPage';
 import SignupPage from './pages/signupPage/SignupPage';
 import LandingPage from './pages/landingPage/LandingPage';
+import { getLightOrDark } from './selectors/lightDarkSelector/lightDarkSelector';
 import styles from './App.css';
 
 const App = () => {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState({});
-  const [lightOrDark, setLightOrDark] = useState(true);
+
+  const lightOrDark = useSelector(getLightOrDark);
   const palletType = lightOrDark ? 'light' : 'dark';
 
   useEffect(() => {
@@ -77,7 +80,6 @@ const App = () => {
               component={() => (
                 <LandingPage
                   lightOrDark={lightOrDark}
-                  setLightOrDark={setLightOrDark}
                   handleLogout={handleLogout}
                   user={user}
                   socket={socket}

@@ -11,13 +11,7 @@ import Header from '../Header/Header';
 import Drawer from '../drawer/Drawer';
 import useStyles from './RoomContainer.styles';
 
-function RoomContainer({
-  user,
-  socket,
-  handleLogout,
-  setLightOrDark,
-  lightOrDark,
-}) {
+function RoomContainer({ user, socket, handleLogout, lightOrDark }) {
   const classes = useStyles();
 
   const history = useHistory();
@@ -52,7 +46,6 @@ function RoomContainer({
         user={user}
         handleLogout={handleLogout}
         lightOrDark={lightOrDark}
-        setLightOrDark={setLightOrDark}
       />
       <Box component='section' className={classes.root}>
         <Drawer
@@ -79,7 +72,6 @@ RoomContainer.propTypes = {
   }),
   handleLogout: PropTypes.func.isRequired,
   lightOrDark: PropTypes.bool,
-  setLightOrDark: PropTypes.func,
 };
 
 export default RoomContainer;

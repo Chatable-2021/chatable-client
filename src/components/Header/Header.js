@@ -13,13 +13,7 @@ import blueLogo from '../../assets/blueLogo.png';
 import whiteLogo from '../../assets/whiteLogo.png';
 import useStyles from './Header.styles';
 
-function Header({
-  user,
-  handleLogout,
-  lightOrDark,
-  setLightOrDark,
-  handleDrawerToggle,
-}) {
+function Header({ user, handleLogout, lightOrDark, handleDrawerToggle }) {
   const lightOrDarkLogo = lightOrDark ? whiteLogo : blueLogo;
   const lightOrDarkRoot = lightOrDark ? 'lightRoot' : 'darkRoot';
   const classes = useStyles();
@@ -44,15 +38,9 @@ function Header({
             <AccountCircleIcon fontSize='large' />
           </IconButton>
 
-          <LightDarkButton
-            lightOrDark={lightOrDark}
-            setLightOrDark={setLightOrDark}
-          />
+          <LightDarkButton lightOrDark={lightOrDark} />
 
-          <MenuListWithButton
-            handleLogout={handleLogout}
-            setLightOrDark={setLightOrDark}
-          />
+          <MenuListWithButton handleLogout={handleLogout} />
         </Box>
       </Toolbar>
     </AppBar>
@@ -63,7 +51,6 @@ Header.propTypes = {
   user: PropTypes.object,
   handleLogout: PropTypes.func,
   lightOrDark: PropTypes.bool,
-  setLightOrDark: PropTypes.func,
   handleDrawerToggle: PropTypes.func,
 };
 

@@ -1,13 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 
 import useStyles from './LightDarkButton.styles';
+import { setLightDark } from '../../actions/lightDarkActions/lightDarkActions';
 
-function LightDarkButton({ lightOrDark, setLightOrDark }) {
+function LightDarkButton({ lightOrDark }) {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleClick = lightOrDark => {
+    dispatch(setLightDark(lightOrDark));
+  };
 
   return (
     <>
@@ -15,7 +23,7 @@ function LightDarkButton({ lightOrDark, setLightOrDark }) {
         <IconButton
           className={classes.root}
           size='medium'
-          onClick={() => setLightOrDark(false)}
+          onClick={() => handleClick(false)}
         >
           <Brightness7Icon fontSize='large' />
         </IconButton>
@@ -23,7 +31,7 @@ function LightDarkButton({ lightOrDark, setLightOrDark }) {
         <IconButton
           className={classes.root}
           size='medium'
-          onClick={() => setLightOrDark(true)}
+          onClick={() => handleClick(true)}
         >
           <Brightness4Icon fontSize='large' />
         </IconButton>
@@ -34,7 +42,6 @@ function LightDarkButton({ lightOrDark, setLightOrDark }) {
 
 LightDarkButton.propTypes = {
   lightOrDark: PropTypes.bool,
-  setLightOrDark: PropTypes.func,
 };
 
 export default LightDarkButton;
