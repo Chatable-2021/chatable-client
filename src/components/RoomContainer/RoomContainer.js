@@ -16,9 +16,9 @@ function RoomContainer({ user, socket, handleLogout, lightOrDark }) {
 
   const history = useHistory();
 
-  // if (!socket) {
-  //   history.push('/');
-  // }
+  if (!socket) {
+    history.push('/');
+  }
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
