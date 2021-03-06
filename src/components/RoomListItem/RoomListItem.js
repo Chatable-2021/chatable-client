@@ -3,8 +3,10 @@ import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import useStyles from './RoomListItem.styles';
+import { Typography } from '@material-ui/core';
 
 const RoomListItem = ({ room, index, selectedRoomByIndex, handleSelected }) => {
   const classes = useStyles();
@@ -19,7 +21,22 @@ const RoomListItem = ({ room, index, selectedRoomByIndex, handleSelected }) => {
       onClick={() => handleSelected(index)}
       selected={selectedRoomByIndex.id === room.id}
     >
-      <ListItemText primary={room?.name} />
+      <ListItemText>
+        <Tooltip
+          title='text'
+          arrow
+          placement='top'
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Typography
+            style={{ fontSize: 20, marginRight: 8, fontWeight: 'bolder' }}
+            display='inline'
+          >
+            #
+          </Typography>
+        </Tooltip>
+        <Typography display='inline'>{room?.name}</Typography>
+      </ListItemText>
     </ListItem>
   );
 };
