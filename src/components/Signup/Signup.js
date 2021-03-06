@@ -31,13 +31,13 @@ function Signup({ socket, setUser, styles }) {
           setInvalid(true);
           setLoading(false);
         } else {
-          setUser(authResults.user);
-          setInvalid(false);
           setLoading(false);
+          setInvalid(false);
+          setUser(authResults.user);
           history.push('/landing-page');
         }
-        return () => socket.off('AUTH_RESULTS');
       });
+      return () => socket.off('AUTH_RESULTS');
     }
   }, []);
 

@@ -27,10 +27,20 @@ export default function ChatMessage({ message, user, isLastMessage }) {
 
   return (
     <ListItem className={classes.root} ref={messageRef}>
-      <ListItemIcon>
+      <ListItemIcon
+        style={{
+          height: '100%',
+          float: 'left',
+        }}
+      >
         <Avatar alt={userName} src='./broken' />
       </ListItemIcon>
-      <Box>
+      <Box
+        style={{
+          float: 'left',
+          width: 'calc(100% - 56px)',
+        }}
+      >
         <Typography>{message.userName}</Typography>
         <Typography>{ReactEmoji.emojify(message.messageText)}</Typography>
       </Box>
