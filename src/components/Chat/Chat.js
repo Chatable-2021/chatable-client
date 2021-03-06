@@ -63,7 +63,12 @@ function Chat({ socket, user }) {
 }
 
 Chat.propTypes = {
-  location: PropTypes.object,
+  user: PropTypes.object,
+  socket: PropTypes.shape({
+    emit: PropTypes.func.isRequired,
+    on: PropTypes.func.isRequired,
+    off: PropTypes.func.isRequired,
+  }),
 };
 
 export default Chat;
