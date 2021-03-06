@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
   selected: {
     color: theme.palette.primary.main,
   },
+  tooltip: {
+    fontSize: 15,
+  },
 }));
 
 export default useStyles;
