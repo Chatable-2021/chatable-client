@@ -20,7 +20,7 @@ function Drawer({ socket, user, rooms, mobileOpen, handleDrawerToggle }) {
         variant='h5'
         style={{ textAlign: 'center', marginTop: 10, fontWeight: 'bolder' }}
       >
-        Rooms list
+        Public Rooms
       </Typography>
       <RoomForm socket={socket} user={user} />
       <RoomList rooms={rooms} />
