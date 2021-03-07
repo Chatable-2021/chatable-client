@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     backgroundColor: theme.palette.background.default,
     marginTop: 10,
+    maxHeight: 40,
   },
 }));
 

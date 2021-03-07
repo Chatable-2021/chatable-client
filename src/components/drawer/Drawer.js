@@ -18,12 +18,19 @@ function Drawer({ socket, user, rooms, mobileOpen, handleDrawerToggle }) {
       <Divider />
       <Typography
         variant='h5'
-        style={{ textAlign: 'center', marginTop: 10, fontWeight: 'bolder' }}
+        style={{
+          textAlign: 'center',
+          marginTop: 10,
+          fontWeight: 'bolder',
+          maxHeight: '35px',
+        }}
       >
         Public Rooms
       </Typography>
       <RoomForm socket={socket} user={user} />
-      <RoomList rooms={rooms} />
+      <div style={{ height: 'calc(100vh - 176px)', paddingTop: 5 }}>
+        <RoomList rooms={rooms} />
+      </div>
     </>
   );
 
@@ -47,6 +54,7 @@ function Drawer({ socket, user, rooms, mobileOpen, handleDrawerToggle }) {
       </Hidden>
       <Hidden xsDown implementation='js'>
         <MaterialDrawer
+          id='banana hamock'
           classes={{
             paper: classes.drawerPaper,
           }}
