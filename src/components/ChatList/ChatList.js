@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 
 import ChatMessage from '../ChatMessage/ChatMessage';
 import InitialChatMessage from '../initialChatMessage/InitialChatMessage';
+import WelcomeMessage from '../welcomeMessage/WelcomeMessage';
 import useStyles from './ChatList.styles';
 
 function ChatList({ user, messages }) {
@@ -18,6 +19,7 @@ function ChatList({ user, messages }) {
       disableGutters={true}
       className={classes.root}
     >
+      <WelcomeMessage />
       <List disablePadding={true} className={classes.list}>
         <InitialChatMessage isMessages={isMessages} />
 
