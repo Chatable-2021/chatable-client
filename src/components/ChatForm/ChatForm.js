@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -6,7 +7,7 @@ import { AppInput, AppButton } from '../controls';
 import { chatFormSchema } from './ChatForm.schema';
 import useStyles from './ChatForm.styles';
 
-export default function ChatForm({ user, socket, roomId }) {
+function ChatForm({ user, socket, roomId }) {
   const { id, name } = user;
   const classes = useStyles();
 
@@ -48,3 +49,15 @@ export default function ChatForm({ user, socket, roomId }) {
     </form>
   );
 }
+
+ChatForm.propTypes = {
+  user: PropTypes.object,
+  socket: PropTypes.shape({
+    emit: PropTypes.func.isRequired,
+    on: PropTypes.func.isRequired,
+    off: PropTypes.func.isRequired,
+  }),
+  roomId: PropTypes.string,
+};
+
+export default ChatForm;
