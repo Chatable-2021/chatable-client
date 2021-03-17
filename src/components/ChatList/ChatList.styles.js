@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'scroll',
     display: 'flex',
     width: '100%',
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
     [theme.breakpoints.down('xs')]: {
       marginTop: 80,
       marginBottom: 56,
