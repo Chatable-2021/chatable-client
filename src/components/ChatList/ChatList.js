@@ -21,18 +21,19 @@ function ChatList({ user, messages }) {
     >
       <WelcomeMessage />
       <List disablePadding={true} className={classes.list}>
-        <InitialChatMessage isMessages={isMessages} />
-
         {messages
-          ? messages.map((message, index) => (
-              <ChatMessage
-                isLastMessage={index === messages.length - 1}
-                key={message.id}
-                user={user}
-                message={message}
-              />
-            ))
+          ? messages
+              .map((message, index) => (
+                <ChatMessage
+                  isLastMessage={index === messages.length - 1}
+                  key={message.id}
+                  user={user}
+                  message={message}
+                />
+              ))
+              .reverse()
           : null}
+        <InitialChatMessage isMessages={isMessages} />
       </List>
     </Container>
   );

@@ -25,6 +25,7 @@ function InitialChatMessage({ isMessages }) {
   const isThereMessages = isMessages ? 'dividerWithMessages' : 'divider';
   return (
     <>
+      {room ? <Divider className={classes[isThereMessages]} /> : null}
       <ListItem className={classes.initialMessageContainer}>
         <Typography className={classes.initialMessageTitle} variant='h4'>
           {room ? `Welcome to #${roomName}!` : ''}
@@ -33,7 +34,6 @@ function InitialChatMessage({ isMessages }) {
           {room ? `this is the start of the #${roomName} room.` : ''}
         </Typography>
       </ListItem>
-      {room ? <Divider className={classes[isThereMessages]} /> : null}
     </>
   );
 }
